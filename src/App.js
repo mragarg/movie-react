@@ -12,7 +12,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      genre: ''
+      genre: '',
+      movie: ''
     }
   }
 
@@ -20,11 +21,21 @@ class App extends React.Component {
     // console.log(Object.keys(movies));
     return (
       <div className="App">
-        <GenreList genres={Object.keys(movies)} handleClick={this._setGenre}/>
+        <GenreList 
+          genres={Object.keys(movies)} 
+          handleClick={this._setGenre}
+        />
         {
-          this.state.genre ? <MovieList movies={Object.keys(movies[this.state.genre])}/> : null
+          this.state.genre ? <MovieList 
+                                movies={Object.keys(movies[this.state.genre])}
+                                handleClick={this._setMovie}
+                              /> : null
         }
-        <ActorList actors={movies.documentaries.robocop}/>
+        {
+          this.state.movie ? <ActorList 
+                                actors={movies[this.state.genre][this.state.movie]}
+                              /> : null 
+        }
       </div>
     );
   }
@@ -40,9 +51,18 @@ class App extends React.Component {
       // genre: genre
       // When the key and value are the same word,
       // you can omit the ": genre" 
-      genre
+      genre,
+      movie: ''
     });
   }
+
+  _setMovie = (movie) => {
+    console.log(`You picked ${movie}`)
+
+    this.setState({
+      movie
+    });
+  };
 
 }
 
