@@ -5,6 +5,7 @@ import movies from './movies';
 
 import GenreList from './GenreList';
 import MovieList from './MovieList';
+import ActorList from './ActorList';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <GenreList genres={Object.keys(movies)}/>
       <MovieList movies={Object.keys(movies.documentaries)}/>
+      <ActorList actors={movies.documentaries.robocop}/>
     </div>
   );
 }
